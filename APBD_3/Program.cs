@@ -7,7 +7,6 @@ class Program
         {
 
             
-            Console.WriteLine("Devices presented after file read.");
             DeviceManager deviceManager = DeviceManagerFactory.CreateDeviceManager();
             deviceManager.ShowAllDevices();
             
