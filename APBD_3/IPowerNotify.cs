@@ -1,5 +1,5 @@
 namespace APBD_3;
-interface IPowerNotify
+interface IBatteryMonitor
 {
     void Notify();
 }

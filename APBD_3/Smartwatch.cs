@@ -1,5 +1,6 @@
 namespace APBD_3;
-class Smartwatch : Device, IPowerNotify
+
+public class Smartwatch : Device, IBatteryMonitor
 {
     private int _batteryLevel;
 
@@ -55,6 +56,15 @@ class Smartwatch : Device, IPowerNotify
     {
         string enabledStatus = IsEnabled ? "enabled" : "disabled";
         return $"Smartwatch {Name} ({Id}) is {enabledStatus} and has {BatteryLevel}%";
+    }
+
+    public override void UpdateDevice(Device newDevice)
+    {
+        base.UpdateDevice(newDevice);
+        if (newDevice is Smartwatch smartwatch)
+        {
+            this.BatteryLevel = smartwatch.BatteryLevel;
+        }
     }
     
     private bool CheckId(string id) => id.Contains("E-");

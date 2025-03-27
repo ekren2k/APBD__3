@@ -1,5 +1,6 @@
 namespace APBD_3;
-abstract class Device
+
+public abstract class Device
 {
     public string Id { get; set; }
     public string Name { get; set; }
@@ -20,5 +21,12 @@ abstract class Device
     public virtual void TurnOff()
     {
         IsEnabled = false;
+    }
+
+    public virtual void UpdateDevice(Device newDevice)
+    {
+        this.Name = newDevice.Name;
+        this.IsEnabled = newDevice.IsEnabled;
+        this.Id = newDevice.Id;
     }
 }

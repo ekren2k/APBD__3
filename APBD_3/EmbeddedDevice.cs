@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 namespace APBD_3;
-class Embedded : Device
+
+public class Embedded : Device, INetworkDevice
 {
     public string NetworkName { get; set; }
     private string _ipAddress;
@@ -50,7 +51,7 @@ class Embedded : Device
         return $"Embedded device {Name} ({Id}) is {enabledStatus} and has IP address {IpAddress}";
     }
 
-    private void Connect()
+    public void Connect()
     {
         if (NetworkName.Contains("MD Ltd."))
         {
@@ -59,6 +60,16 @@ class Embedded : Device
         else
         {
             throw new ConnectionException();
+        }
+    }
+    
+    public override void UpdateDevice(Device newDevice)
+    {
+        base.UpdateDevice(newDevice);
+        if (newDevice is Embedded embedded)
+        {
+            this._ipAddress = embedded.IpAddress;
+            this._isConnected = embedded._isConnected;
         }
     }
     

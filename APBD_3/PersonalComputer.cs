@@ -1,5 +1,6 @@
 namespace APBD_3;
-class PersonalComputer : Device
+
+public class PersonalComputer : Device
 {
     public string? OperatingSystem { get; set; }
     
@@ -28,6 +29,15 @@ class PersonalComputer : Device
         string enabledStatus = IsEnabled ? "enabled" : "disabled";
         string osStatus = OperatingSystem is null ? "has not OS" : $"has {OperatingSystem}";
         return $"PC {Name} ({Id}) is {enabledStatus} and {osStatus}";
+    }
+
+    public override void UpdateDevice(Device newDevice)
+    {
+        base.UpdateDevice(newDevice);
+        if (newDevice is PersonalComputer personalComputer)
+        {
+            this.OperatingSystem = personalComputer.OperatingSystem;
+        }
     }
 
     private bool CheckId(string id) => id.Contains("P-");

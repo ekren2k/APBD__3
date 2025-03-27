@@ -5,9 +5,11 @@ class Program
     {
         try
         {
-            DeviceManager deviceManager = new("input.txt");
+            DeviceRepository rep = new DeviceRepository();
+            DeviceFileParser deviceFileParser = new("input.txt", rep);
             
             Console.WriteLine("Devices presented after file read.");
+            DeviceManager deviceManager = new(rep);
             deviceManager.ShowAllDevices();
             
             Console.WriteLine("Create new computer with correct data and add it to device store.");
