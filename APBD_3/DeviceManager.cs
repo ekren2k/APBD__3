@@ -1,6 +1,7 @@
 
 namespace APBD_3;
-class DeviceManager
+
+public class DeviceManager
 {
     private DeviceRepository _deviceRepository;
 
